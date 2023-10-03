@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin // permite que este controlador maneje solicitudes cruzadas entre dominios (CORS), lo que significa que puede recibir solicitudes desde dominios diferentes al del servidor.
 @RestController
 public class ProductController {
 
@@ -71,7 +71,7 @@ public class ProductController {
     // Llamando a la API de detalle de categorias
     @RequestMapping(value = "products/categories/{id}", method = RequestMethod.GET)
     public ResponseEntity<CategoryDTO> getCategoryByID(@PathVariable(value = "id") Integer id) {
-        URI categoryURI = eureka.getUri("MS-CATEGORY");
+        URI categoryURI = eureka.getUri("ms-category");
         CategoryDTO c = restTemplate.getForObject(
                 categoryURI.resolve("/categories/" + id),
                 CategoryDTO.class);
